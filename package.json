@@ -10,8 +10,8 @@
     "html",
     "css"
   ],
-  "author": "RCRIC Project & Documentation team.",
-  "license": "Apache License 2.0",
+  "author": "Ives van Hoorne",
+  "license": "MIT",
   "devDependencies": {
     "serve": "11.2.0"
   }
