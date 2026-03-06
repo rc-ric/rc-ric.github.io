@@ -2025,6 +2025,21 @@
         background: rgba(147, 51, 234, 0.03);
       }
 
+      /* Restore richer timeline hover behavior on desktop pointers. */
+      @media (hover: hover) and (pointer: fine) {
+        .timeline-left .timeline-card:hover {
+          transform: translateX(-6px);
+          box-shadow: 0 18px 35px -20px rgba(0, 0, 0, 0.8),
+            0 0 24px -10px rgba(147, 51, 234, 0.45);
+        }
+
+        .timeline-right .timeline-card:hover {
+          transform: translateX(6px);
+          box-shadow: 0 18px 35px -20px rgba(0, 0, 0, 0.8),
+            0 0 24px -10px rgba(147, 51, 234, 0.45);
+        }
+      }
+
       .timeline-left .timeline-card {
         margin-right: 1.75rem;
         text-align: right;
@@ -2036,21 +2051,37 @@
 
       /* Mobile: full-width cards, no left col */
       @media (max-width: 767px) {
-        .timeline-left {
-          display: none !important;
-        }
-
+        .timeline-left,
         .timeline-right {
+          display: block !important;
           grid-column: 2;
+          min-width: 0;
         }
 
+        .timeline-left .timeline-card,
         .timeline-right .timeline-card {
+          width: 100%;
+          min-width: 0;
           margin-left: 1rem;
           margin-right: 0;
+          text-align: left;
+          opacity: 1;
+          transform: none;
         }
 
         .timeline-dot-col {
           grid-column: 1;
+        }
+
+        .timeline-item {
+          grid-template-columns: 40px minmax(0, 1fr);
+        }
+
+        .timeline-date,
+        .timeline-title,
+        .timeline-body {
+          overflow-wrap: anywhere;
+          word-break: break-word;
         }
       }
 
@@ -2074,9 +2105,11 @@
       }
 
       @media (max-width: 767px) {
+        .timeline-left .timeline-card::after,
         .timeline-right .timeline-card::after {
           width: 1rem;
           left: -1rem;
+          right: auto;
         }
       }
 
@@ -2717,3 +2750,26 @@
         .about-text-block.in-view .about-accent-line {
           transform: scaleY(1);
         }
+
+      /* Mobile performance: keep visuals but reduce expensive effects. */
+      @media (max-width: 767px) {
+        .grid-orb {
+          animation: none !important;
+          filter: blur(56px);
+          opacity: 0.65;
+        }
+
+        .nav-floating {
+          backdrop-filter: blur(24px) saturate(150%) !important;
+          -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
+        }
+
+        #mobile-menu {
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+        }
+
+        #cursor-glow {
+          display: none !important;
+        }
+      }

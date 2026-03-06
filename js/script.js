@@ -1,12 +1,19 @@
 ﻿      document.addEventListener("DOMContentLoaded", () => {
+        const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
         // ── Cursor glow ──
-        const cursorGlow = document.createElement("div");
-        cursorGlow.id = "cursor-glow";
-        document.body.appendChild(cursorGlow);
-        document.addEventListener("mousemove", (e) => {
-          cursorGlow.style.left = e.clientX + "px";
-          cursorGlow.style.top = e.clientY + "px";
-        });
+        if (!isTouchDevice && !prefersReducedMotion) {
+          const cursorGlow = document.createElement("div");
+          cursorGlow.id = "cursor-glow";
+          document.body.appendChild(cursorGlow);
+          document.addEventListener("mousemove", (e) => {
+            cursorGlow.style.left = e.clientX + "px";
+            cursorGlow.style.top = e.clientY + "px";
+          });
+        }
 
         // Header Scroll Effect — drive blur via inline style for reliability
         const header = document.getElementById("header");
@@ -17,16 +24,23 @@
             const scrolled = window.scrollY > 40;
             if (header) header.classList.toggle("nav-scrolled", scrolled);
             if (navFloating) {
+              const lowFx = isTouchDevice || prefersReducedMotion;
               if (scrolled) {
-                navFloating.style.backdropFilter = "blur(80px) saturate(220%)";
-                navFloating.style.webkitBackdropFilter =
-                  "blur(80px) saturate(220%)";
+                navFloating.style.backdropFilter = lowFx
+                  ? "blur(14px) saturate(140%)"
+                  : "blur(80px) saturate(220%)";
+                navFloating.style.webkitBackdropFilter = lowFx
+                  ? "blur(14px) saturate(140%)"
+                  : "blur(80px) saturate(220%)";
                 navFloating.style.background = "rgba(4,4,4,0.45)";
                 navFloating.style.borderColor = "rgba(255,255,255,0.12)";
               } else {
-                navFloating.style.backdropFilter = "blur(60px) saturate(200%)";
-                navFloating.style.webkitBackdropFilter =
-                  "blur(60px) saturate(200%)";
+                navFloating.style.backdropFilter = lowFx
+                  ? "blur(10px) saturate(130%)"
+                  : "blur(60px) saturate(200%)";
+                navFloating.style.webkitBackdropFilter = lowFx
+                  ? "blur(10px) saturate(130%)"
+                  : "blur(60px) saturate(200%)";
                 navFloating.style.background = "rgba(0,0,0,0.08)";
                 navFloating.style.borderColor = "rgba(255,255,255,0.08)";
               }
@@ -37,7 +51,6 @@
 
         // Mobile Menu Toggle (full-screen overlay)
         const menuBtn = document.getElementById("menu-btn");
-        const closeBtn = document.getElementById("mobile-close");
         const mobileMenu = document.getElementById("mobile-menu");
 
         const openMenu = () => {
@@ -55,7 +68,6 @@
           menuBtn.addEventListener("click", () =>
             mobileMenu.classList.contains("open") ? closeMenu() : openMenu()
           );
-        if (closeBtn) closeBtn.addEventListener("click", closeMenu);
         mobileMenu &&
           mobileMenu
             .querySelectorAll("a")
@@ -111,21 +123,23 @@
         const orb1 = document.querySelector(".orb-1");
         const orb3 = document.querySelector(".orb-3");
         let ticking = false;
-        window.addEventListener(
-          "scroll",
-          () => {
-            if (!ticking) {
-              requestAnimationFrame(() => {
-                const sy = window.scrollY;
-                if (orb1) orb1.style.transform = `translateY(${sy * 0.12}px)`;
-                if (orb3) orb3.style.transform = `translateY(${sy * -0.08}px)`;
-                ticking = false;
-              });
-              ticking = true;
-            }
-          },
-          { passive: true }
-        );
+        if (!isTouchDevice && !prefersReducedMotion) {
+          window.addEventListener(
+            "scroll",
+            () => {
+              if (!ticking) {
+                requestAnimationFrame(() => {
+                  const sy = window.scrollY;
+                  if (orb1) orb1.style.transform = `translateY(${sy * 0.12}px)`;
+                  if (orb3) orb3.style.transform = `translateY(${sy * -0.08}px)`;
+                  ticking = false;
+                });
+                ticking = true;
+              }
+            },
+            { passive: true }
+          );
+        }
 
         // Mouse Parallax
         const homeSection = document.getElementById("home");
@@ -141,7 +155,7 @@
           return { x, y };
         };
 
-        if (homeSection && modelContainer) {
+        if (!isTouchDevice && !prefersReducedMotion && homeSection && modelContainer) {
           homeSection.addEventListener("mousemove", (e) => {
             const { x, y } = handleParallax(e, modelContainer);
             hudTags.forEach((tag) => {
@@ -156,7 +170,7 @@
             hudTags.forEach((t) => (t.style.transform = "none"));
           });
         }
-        if (joinSection && joinFrame) {
+        if (!isTouchDevice && !prefersReducedMotion && joinSection && joinFrame) {
           joinSection.addEventListener("mousemove", (e) =>
             handleParallax(e, joinFrame, 0.3)
           );
