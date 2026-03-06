@@ -12,23 +12,21 @@ Official website for **Rajuk College Robotics & ICT Club (RCRIC)**.
 
 ## Run Locally:
 
-### Prerequisites:
+No package manager or build step is required.
 
-- `Node.js` and `npm`
+### Option 1: Open Directly
 
-### Setup:
+Open `index.html` in your browser.
 
-```bash
-npm install
-```
+### Option 2: Run a Simple Local Server (Recommended)
 
-### Start Local Server:
+If you have Python installed:
 
 ```bash
-npm start
+python -m http.server 8080
 ```
 
-This uses the `serve` package defined in `package.json` and serves `index.html` for local preview.
+Then visit `http://localhost:8080`.
 
 ## Project Structure:
 
@@ -39,7 +37,6 @@ This uses the `serve` package defined in `package.json` and serves `index.html` 
 |   `-- style.css
 |-- js/
 |   `-- script.js
-|-- package.json
 |-- LICENSE
 `-- README.md
 ```
