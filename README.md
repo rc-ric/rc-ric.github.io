@@ -14,11 +14,11 @@ Official website for **Rajuk College Robotics & ICT Club (RCRIC)**.
 
 No package manager or build step is required.
 
-### Option 1: Open Directly
+### Option 1: Open Directly:
 
 Open `index.html` in your browser.
 
-### Option 2: Run a Simple Local Server (Recommended)
+### Option 2: Run a Simple Local Server (Recommended):
 
 If you have Python installed:
 
