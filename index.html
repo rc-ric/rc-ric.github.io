@@ -209,10 +209,7 @@
 
           <!-- HUD Corners -->
           <div class="absolute inset-x-6 inset-y-0 pointer-events-none p-6">
-            <div class="tech-corner tl"></div>
-            <div class="tech-corner tr"></div>
-            <div class="tech-corner bl"></div>
-            <div class="tech-corner br"></div>
+            <tc-corners></tc-corners>
 
             <!-- Extra HUD Accents -->
             <div
@@ -295,113 +292,11 @@
         </h2>
         <div class="flex justify-center mb-16"></div>
 
+        <!-- Feature cards rendered by script.js from FEATURE_CARDS data array -->
         <div
+          id="features-grid"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children"
-        >
-          <!-- Feature 1 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>workshops
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Weekly Workshops
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Hands-on sessions every week covering PCB design, ROS2, computer
-              vision, SLAM, and embedded systems. Learn by building.
-            </p>
-          </div>
-
-          <!-- Feature 2 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>bootcamps
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Technical Bootcamps
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Intensive multi-day bootcamps during breaks. Deep dives into
-              advanced topics like machine learning, autonomous navigation, and
-              system integration.
-            </p>
-          </div>
-
-          <!-- Feature 3 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>fabrication
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Mechanical Design
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Master CAD software, 3D printing, CNC machining, and laser
-              cutting. Design real robot chassis, enclosures, and mechanical
-              systems from scratch.
-            </p>
-          </div>
-
-          <!-- Feature 4 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>programming
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Embedded Systems
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Write firmware in C++ and Python for microcontrollers. Work with
-              ROS2, Arduino, Raspberry Pi, and real-time control systems.
-            </p>
-          </div>
-
-          <!-- Feature 5 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>competition
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Competitions
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Compete in FIRST Robotics, VEX, RoboCup, and other national
-              robotics competitions. Test your skills against the best teams.
-            </p>
-          </div>
-
-          <!-- Feature 6 -->
-          <div class="feature-card p-10 group">
-            <div class="feature-card-shine"></div>
-            <div
-              class="font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors"
-            >
-              <span class="text-white/15">// </span>projects
-            </div>
-            <h3 class="font-display text-xl font-semibold mb-3">
-              Team Projects
-            </h3>
-            <p class="text-white/50 text-sm leading-relaxed font-light">
-              Collaborate on multi-month projects. Learn version control, system
-              integration, testing, and professional engineering workflows.
-            </p>
-          </div>
-        </div>
+        ></div>
       </div>
     </section>
 
@@ -675,10 +570,7 @@
           <div
             class="project-card bento-col-2 bento-row-2 group reveal-card delay-200"
           >
-            <div class="tech-corner tl"></div>
-            <div class="tech-corner tr"></div>
-            <div class="tech-corner bl"></div>
-            <div class="tech-corner br"></div>
+            <tc-corners></tc-corners>
             <div class="scan-line"></div>
             <div class="tech-marker marker-tl">[ SECTOR_B_G01 ]</div>
 
@@ -710,10 +602,7 @@
           <div
             class="project-card bento-col-2 bento-row-2 group reveal-card delay-300"
           >
-            <div class="tech-corner tl"></div>
-            <div class="tech-corner tr"></div>
-            <div class="tech-corner bl"></div>
-            <div class="tech-corner br"></div>
+            <tc-corners></tc-corners>
             <div class="scan-line"></div>
             <div class="tech-marker marker-tl">[ SECTOR_C_G01 ]</div>
 
@@ -784,10 +673,7 @@
               class="about-glass p-8 border border-white/5 hover:border-accent/20 transition-all duration-500 group relative pl-10 about-text-block"
             >
               <div class="about-accent-line"></div>
-              <div class="tech-corner tl"></div>
-              <div class="tech-corner tr"></div>
-              <div class="tech-corner bl"></div>
-              <div class="tech-corner br"></div>
+              <tc-corners></tc-corners>
               <p class="text-white/80 text-lg leading-relaxed mb-6 font-light">
                 <span class="word-reveal-block">
                   <span class="word-reveal"><span>The</span></span
@@ -865,10 +751,7 @@
           <div
             class="order-1 lg:order-2 relative h-[450px] about-glass overflow-hidden about-img-wrap group"
           >
-            <div class="tech-corner tl"></div>
-            <div class="tech-corner tr"></div>
-            <div class="tech-corner bl"></div>
-            <div class="tech-corner br"></div>
+            <tc-corners></tc-corners>
             <img
               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1000&auto=format&fit=crop"
               alt="RCRIC Team"
@@ -888,10 +771,7 @@
           <div
             class="relative h-[450px] about-glass overflow-hidden about-img-wrap group"
           >
-            <div class="tech-corner tl"></div>
-            <div class="tech-corner tr"></div>
-            <div class="tech-corner bl"></div>
-            <div class="tech-corner br"></div>
+            <tc-corners></tc-corners>
             <img
               src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop"
               alt="RCRIC Workshop"
@@ -921,10 +801,7 @@
               class="about-glass p-8 border border-white/5 hover:border-accent/20 transition-all duration-500 group relative pl-10 about-text-block"
             >
               <div class="about-accent-line"></div>
-              <div class="tech-corner tl"></div>
-              <div class="tech-corner tr"></div>
-              <div class="tech-corner bl"></div>
-              <div class="tech-corner br"></div>
+              <tc-corners></tc-corners>
               <p class="text-white/80 text-lg leading-relaxed mb-6 font-light">
                 <span class="word-reveal-block">
                   <span class="word-reveal"><span>To</span></span
@@ -1243,10 +1120,7 @@
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="join-frame relative p-12 md:p-24 overflow-hidden group">
           <!-- Tech Corners -->
-          <div class="tech-corner tl"></div>
-          <div class="tech-corner tr"></div>
-          <div class="tech-corner bl"></div>
-          <div class="tech-corner br"></div>
+          <tc-corners></tc-corners>
 
           <!-- Subtle Grid Overlay -->
           <div
@@ -1316,10 +1190,7 @@
         class="max-w-7xl mx-auto footer-glass p-12 md:p-16 relative overflow-hidden"
       >
         <!-- Tech Corners for Footer -->
-        <div class="tech-corner tl !w-8 !h-8 opacity-30"></div>
-        <div class="tech-corner tr !w-8 !h-8 opacity-30"></div>
-        <div class="tech-corner bl !w-8 !h-8 opacity-30"></div>
-        <div class="tech-corner br !w-8 !h-8 opacity-30"></div>
+        <tc-corners extra="!w-8 !h-8 opacity-30"></tc-corners>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
           <div class="col-span-1 md:col-span-1">

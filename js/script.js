@@ -1,4 +1,88 @@
-﻿      document.addEventListener("DOMContentLoaded", () => {
+﻿// ── Tech Corners Custom Element ──
+// Replaces the repeated 4-div corner pattern throughout the page.
+// Usage: <tc-corners></tc-corners>
+// Usage with custom classes on each corner: <tc-corners extra="!w-8 !h-8 opacity-30"></tc-corners>
+class TechCorners extends HTMLElement {
+  connectedCallback() {
+    const extra = this.getAttribute("extra") || "";
+    const cls = extra ? ` ${extra}` : "";
+    this.innerHTML =
+      `<div class="tech-corner tl${cls}"></div>` +
+      `<div class="tech-corner tr${cls}"></div>` +
+      `<div class="tech-corner bl${cls}"></div>` +
+      `<div class="tech-corner br${cls}"></div>`;
+  }
+}
+customElements.define("tc-corners", TechCorners);
+
+// ── Activities / Feature Cards Data ──
+// Card data extracted here to avoid repeating the same markup structure 6 times.
+const FEATURE_CARDS = [
+  {
+    id: "workshops",
+    title: "Weekly Workshops",
+    body: "Hands-on sessions every week covering PCB design, ROS2, computer vision, SLAM, and embedded systems. Learn by building.",
+  },
+  {
+    id: "bootcamps",
+    title: "Technical Bootcamps",
+    body: "Intensive multi-day bootcamps during breaks. Deep dives into advanced topics like machine learning, autonomous navigation, and system integration.",
+  },
+  {
+    id: "fabrication",
+    title: "Mechanical Design",
+    body: "Master CAD software, 3D printing, CNC machining, and laser cutting. Design real robot chassis, enclosures, and mechanical systems from scratch.",
+  },
+  {
+    id: "programming",
+    title: "Embedded Systems",
+    body: "Write firmware in C++ and Python for microcontrollers. Work with ROS2, Arduino, Raspberry Pi, and real-time control systems.",
+  },
+  {
+    id: "competition",
+    title: "Competitions",
+    body: "Compete in FIRST Robotics, VEX, RoboCup, and other national robotics competitions. Test your skills against the best teams.",
+  },
+  {
+    id: "projects",
+    title: "Team Projects",
+    body: "Collaborate on multi-month projects. Learn version control, system integration, testing, and professional engineering workflows.",
+  },
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ── Render Feature Cards ──
+  // Cards are generated from FEATURE_CARDS data to avoid repeating identical markup.
+  // DOM methods are used for title/body so text is always treated as plain text.
+  const featuresGrid = document.getElementById("features-grid");
+  if (featuresGrid) {
+    for (const { id, title, body } of FEATURE_CARDS) {
+      const card = document.createElement("div");
+      card.className = "feature-card p-10 group";
+
+      const shine = document.createElement("div");
+      shine.className = "feature-card-shine";
+
+      const label = document.createElement("div");
+      label.className =
+        "font-tech text-xs text-white/30 mb-6 group-hover:text-accent transition-colors";
+      const commentSpan = document.createElement("span");
+      commentSpan.className = "text-white/15";
+      commentSpan.textContent = "// ";
+      label.append(commentSpan, document.createTextNode(id));
+
+      const heading = document.createElement("h3");
+      heading.className = "font-display text-xl font-semibold mb-3";
+      heading.textContent = title;
+
+      const para = document.createElement("p");
+      para.className = "text-white/50 text-sm leading-relaxed font-light";
+      para.textContent = body;
+
+      card.append(shine, label, heading, para);
+      featuresGrid.appendChild(card);
+    }
+  }
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
         const prefersReducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
