@@ -3,6 +3,14 @@
         const prefersReducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
+        const scrollTopBtn = document.getElementById("scroll-top-btn");
+
+        // Keep page flow aligned with nav: Home -> About -> Activities -> ...
+        const homeSectionEl = document.getElementById("home");
+        const aboutSectionEl = document.getElementById("about");
+        if (homeSectionEl && aboutSectionEl && homeSectionEl.nextElementSibling !== aboutSectionEl) {
+          homeSectionEl.insertAdjacentElement("afterend", aboutSectionEl);
+        }
 
         // ── Cursor glow ──
         if (!isTouchDevice && !prefersReducedMotion) {
@@ -23,6 +31,9 @@
           () => {
             const scrolled = window.scrollY > 40;
             if (header) header.classList.toggle("nav-scrolled", scrolled);
+            if (scrollTopBtn) {
+              scrollTopBtn.classList.toggle("is-visible", window.scrollY > 420);
+            }
             if (navFloating) {
               const lowFx = isTouchDevice || prefersReducedMotion;
               if (scrolled) {
@@ -48,6 +59,16 @@
           },
           { passive: true }
         );
+
+        if (scrollTopBtn) {
+          scrollTopBtn.classList.toggle("is-visible", window.scrollY > 420);
+          scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+              top: 0,
+              behavior: prefersReducedMotion ? "auto" : "smooth",
+            });
+          });
+        }
 
         // Mobile Menu Toggle (full-screen overlay)
         const menuBtn = document.getElementById("menu-btn");

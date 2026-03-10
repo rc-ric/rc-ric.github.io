@@ -1865,6 +1865,103 @@
         will-change: left, top;
       }
 
+      /* ── Scroll-to-top button ── */
+      #scroll-top-btn {
+        position: fixed;
+        right: clamp(0.9rem, 2vw, 1.25rem);
+        bottom: max(0.9rem, env(safe-area-inset-bottom));
+        width: clamp(40px, 7vw, 46px);
+        aspect-ratio: 1 / 1;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: transparent;
+        backdrop-filter: blur(14px) saturate(150%);
+        -webkit-backdrop-filter: blur(14px) saturate(150%);
+        color: rgba(255, 255, 255, 0.92);
+        font-family: "Orbitron", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.95),
+          0 0 18px -8px rgba(147, 51, 234, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px) scale(0.95);
+        pointer-events: none;
+        transition: opacity 0.28s ease, transform 0.28s ease,
+          border-color 0.28s ease, box-shadow 0.28s ease, color 0.28s ease;
+        z-index: 60;
+      }
+
+      #scroll-top-btn .scroll-top-icon {
+        position: relative;
+        z-index: 2;
+        transform: translateY(0);
+      }
+
+      #scroll-top-btn .tech-corner {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-width: 1px;
+        border-color: rgba(255, 255, 255, 0.42);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+        z-index: 3;
+      }
+
+      #scroll-top-btn:hover .tech-corner {
+        width: 12px;
+        height: 12px;
+        border-color: #fff;
+      }
+
+      #scroll-top-btn::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          rgba(147, 51, 234, 0.35),
+          rgba(255, 255, 255, 0.12)
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+      }
+
+      #scroll-top-btn.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      #scroll-top-btn:hover {
+        border-color: rgba(147, 51, 234, 0.7);
+        background: rgba(147, 51, 234, 0.1);
+        color: #fff;
+        box-shadow: 0 14px 34px -16px rgba(0, 0, 0, 0.95),
+          0 0 24px -6px rgba(147, 51, 234, 0.9);
+      }
+
+      #scroll-top-btn:hover::before {
+        opacity: 1;
+      }
+
+      #scroll-top-btn:active {
+        transform: translateY(0) scale(0.95);
+      }
+
+      #scroll-top-btn:focus-visible {
+        outline: 2px solid rgba(147, 51, 234, 0.8);
+        outline-offset: 2px;
+      }
+
       /* ── Stats Section ── */
       #stats {
         position: relative;
@@ -2788,5 +2885,22 @@
 
         #cursor-glow {
           display: none !important;
+        }
+
+        #scroll-top-btn {
+          right: 0.75rem;
+          bottom: max(0.75rem, env(safe-area-inset-bottom));
+          width: clamp(34px, 11vw, 40px);
+          font-size: 0.9rem;
+        }
+
+        #scroll-top-btn .tech-corner {
+          width: 7px;
+          height: 7px;
+        }
+
+        #scroll-top-btn:hover .tech-corner {
+          width: 10px;
+          height: 10px;
         }
       }
