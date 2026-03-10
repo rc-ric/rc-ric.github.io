@@ -1,4 +1,4 @@
-﻿      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", () => {
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
         const prefersReducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
