@@ -1974,7 +1974,7 @@
 
       /* ── Each row ── */
       .timeline-item {
-        --timeline-dot-outer-size: 15px;
+        --timeline-dot-outer-size: 10px;
         --timeline-dot-center-y: 1.5rem;
         display: grid;
         grid-template-columns: 1fr 48px 1fr;
@@ -2052,13 +2052,6 @@
 
       .timeline-right .timeline-card {
         margin-left: 1.75rem;
-      }
-
-      /* Keep right-side events fixed; drop left-side events slightly lower. */
-      @media (min-width: 768px) {
-        .timeline-left:not(.hidden) .timeline-card {
-          margin-top: 1rem;
-        }
       }
 
       /* Mobile: full-width cards, no left col */
