@@ -75,6 +75,8 @@
         const mobileMenu = document.getElementById("mobile-menu");
 
         const openMenu = () => {
+          const mobileJoinLink = mobileMenu?.querySelector("a.join-link");
+          mobileJoinLink?.classList.remove("is-active");
           menuBtn.classList.add("open");
           mobileMenu.classList.add("open");
           document.body.style.overflow = "hidden";
@@ -89,10 +91,72 @@
           menuBtn.addEventListener("click", () =>
             mobileMenu.classList.contains("open") ? closeMenu() : openMenu()
           );
-        mobileMenu &&
-          mobileMenu
-            .querySelectorAll("a")
-            .forEach((a) => a.addEventListener("click", closeMenu));
+        if (mobileMenu) {
+          const mobileJoinLink = mobileMenu.querySelector("a.join-link");
+          mobileMenu.querySelectorAll("a").forEach((a) =>
+            a.addEventListener("click", () => {
+              if (a === mobileJoinLink) {
+                mobileJoinLink.classList.add("is-active");
+              }
+              closeMenu();
+            })
+          );
+        }
+
+        // Hero copy: character-by-character typewriter replay
+        const typewriterText = document.getElementById("typewriter-text");
+        if (typewriterText) {
+          const fullText = typewriterText.textContent.replace(/\s+/g, " ").trim();
+          const replayDelayMs = 30000;
+          const initialDelayMs = 900;
+          const typingDurationMs = isTouchDevice ? 4200 : 4000;
+          let animationFrameId;
+          let replayTimerId;
+
+          if (prefersReducedMotion) {
+            typewriterText.textContent = fullText;
+          } else {
+            const reservedHeight = typewriterText.offsetHeight;
+            typewriterText.style.minHeight = `${reservedHeight}px`;
+
+            const clearTypewriterLoop = () => {
+              window.cancelAnimationFrame(animationFrameId);
+              window.clearTimeout(replayTimerId);
+            };
+
+            const runTypewriter = () => {
+              clearTypewriterLoop();
+              typewriterText.textContent = "";
+
+              const startTypingAt = performance.now();
+
+              const step = (timestamp) => {
+                const progress = Math.min(
+                  (timestamp - startTypingAt) / typingDurationMs,
+                  1
+                );
+                const visibleLength = Math.min(
+                  fullText.length,
+                  Math.floor(progress * fullText.length)
+                );
+
+                typewriterText.textContent = fullText.slice(0, visibleLength);
+
+                if (progress < 1) {
+                  animationFrameId = window.requestAnimationFrame(step);
+                  return;
+                }
+
+                typewriterText.textContent = fullText;
+                replayTimerId = window.setTimeout(runTypewriter, replayDelayMs);
+              };
+
+              animationFrameId = window.requestAnimationFrame(step);
+            };
+
+            replayTimerId = window.setTimeout(runTypewriter, initialDelayMs);
+          }
+        }
 
         // ── Universal Scroll-triggered Reveal ──
         // Collect all reveal classes including new ones
