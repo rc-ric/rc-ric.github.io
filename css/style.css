@@ -2905,6 +2905,16 @@
           opacity: 0.65;
         }
 
+        #home .text-gradient-grey {
+          background: none;
+          -webkit-text-fill-color: currentColor;
+          color: rgba(255, 255, 255, 0.94);
+        }
+
+        #home .text-gradient-grey > span {
+          opacity: 1 !important;
+        }
+
         .nav-floating {
           backdrop-filter: blur(24px) saturate(150%) !important;
           -webkit-backdrop-filter: blur(24px) saturate(150%) !important;
