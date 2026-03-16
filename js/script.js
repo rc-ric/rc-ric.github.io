@@ -5,12 +5,17 @@
         ).matches;
         const scrollTopBtn = document.getElementById("scroll-top-btn");
 
-        // Keep page flow aligned with nav: Home -> About -> Activities -> ...
-        const homeSectionEl = document.getElementById("home");
-        const aboutSectionEl = document.getElementById("about");
-        if (homeSectionEl && aboutSectionEl && homeSectionEl.nextElementSibling !== aboutSectionEl) {
-          homeSectionEl.insertAdjacentElement("afterend", aboutSectionEl);
-        }
+        const allImages = document.querySelectorAll("img");
+        allImages.forEach((imageEl, imageIndex) => {
+          imageEl.decoding = "async";
+          if (imageIndex === 0) {
+            imageEl.loading = "eager";
+            imageEl.fetchPriority = "high";
+          } else {
+            imageEl.loading = "lazy";
+            imageEl.fetchPriority = "low";
+          }
+        });
 
         // ── Cursor glow ──
         if (!isTouchDevice && !prefersReducedMotion) {
