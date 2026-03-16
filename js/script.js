@@ -8,12 +8,32 @@
         ).matches;
         const scrollTopBtn = document.getElementById("scroll-top-btn");
 
+        const allImages = document.querySelectorAll("img");
+        allImages.forEach((imageEl, imageIndex) => {
+          imageEl.decoding = "async";
+          if (imageIndex === 0) {
+            imageEl.loading = "eager";
+            imageEl.fetchPriority = "high";
+          } else {
+            imageEl.loading = "lazy";
+            imageEl.fetchPriority = "low";
+          }
+        });
+
+        const eagerImages = [...allImages].filter(
+          (imageEl) => imageEl.loading !== "lazy"
+        );
+
         if (preloaderEl) {
           document.body.style.overflow = "hidden";
+          const preloaderProgressbarEl = preloaderEl.querySelector(
+            "[role='progressbar']"
+          );
 
           const trackableResources = [
+            ...eagerImages,
             ...document.querySelectorAll(
-              "img[src], link[rel='stylesheet'][href], script[src], source[src]"
+              "link[rel='stylesheet'][href], script[src], source[src]"
             ),
           ].filter((el) => !el.closest("#site-preloader"));
 
@@ -28,9 +48,7 @@
             const safeValue = Math.min(100, Math.max(1, progressValue));
             if (preloaderBarEl) preloaderBarEl.style.width = `${safeValue}%`;
             if (preloaderPercentEl) preloaderPercentEl.textContent = `${safeValue}%`;
-            preloaderEl
-              .querySelector("[role='progressbar']")
-              ?.setAttribute("aria-valuenow", String(safeValue));
+            preloaderProgressbarEl?.setAttribute("aria-valuenow", String(safeValue));
           };
 
           const animateProgress = () => {
@@ -122,18 +140,6 @@
           );
         }
 
-        const allImages = document.querySelectorAll("img");
-        allImages.forEach((imageEl, imageIndex) => {
-          imageEl.decoding = "async";
-          if (imageIndex === 0) {
-            imageEl.loading = "eager";
-            imageEl.fetchPriority = "high";
-          } else {
-            imageEl.loading = "lazy";
-            imageEl.fetchPriority = "low";
-          }
-        });
-
         // ── Cursor glow ──
         if (!isTouchDevice && !prefersReducedMotion) {
           const cursorGlow = document.createElement("div");
@@ -148,42 +154,54 @@
         // Header Scroll Effect — drive blur via inline style for reliability
         const header = document.getElementById("header");
         const navFloating = document.querySelector(".nav-floating");
+
+        const lowFx = isTouchDevice || prefersReducedMotion;
+        if (navFloating) {
+          navFloating.classList.add("nav-fx-dynamic");
+          navFloating.classList.toggle("is-low-fx", lowFx);
+        }
+        let lastNavScrolledState = null;
+        let lastScrollTopState = null;
+        let scrollUpdateQueued = false;
+
+        const applyScrollUi = () => {
+          const scrolled = window.scrollY > 40;
+          const showScrollTop = window.scrollY > 420;
+
+          if (header && lastNavScrolledState !== scrolled) {
+            header.classList.toggle("nav-scrolled", scrolled);
+          }
+
+          if (navFloating && lastNavScrolledState !== scrolled) {
+            navFloating.classList.toggle("is-scrolled", scrolled);
+          }
+
+          if (scrollTopBtn && lastScrollTopState !== showScrollTop) {
+            scrollTopBtn.classList.toggle("is-visible", showScrollTop);
+          }
+
+          lastNavScrolledState = scrolled;
+          lastScrollTopState = showScrollTop;
+        };
+
+        const onScroll = () => {
+          if (scrollUpdateQueued) return;
+          scrollUpdateQueued = true;
+          requestAnimationFrame(() => {
+            applyScrollUi();
+            scrollUpdateQueued = false;
+          });
+        };
+
         window.addEventListener(
           "scroll",
-          () => {
-            const scrolled = window.scrollY > 40;
-            if (header) header.classList.toggle("nav-scrolled", scrolled);
-            if (scrollTopBtn) {
-              scrollTopBtn.classList.toggle("is-visible", window.scrollY > 420);
-            }
-            if (navFloating) {
-              const lowFx = isTouchDevice || prefersReducedMotion;
-              if (scrolled) {
-                navFloating.style.backdropFilter = lowFx
-                  ? "blur(14px) saturate(140%)"
-                  : "blur(80px) saturate(220%)";
-                navFloating.style.webkitBackdropFilter = lowFx
-                  ? "blur(14px) saturate(140%)"
-                  : "blur(80px) saturate(220%)";
-                navFloating.style.background = "rgba(4,4,4,0.45)";
-                navFloating.style.borderColor = "rgba(255,255,255,0.12)";
-              } else {
-                navFloating.style.backdropFilter = lowFx
-                  ? "blur(10px) saturate(130%)"
-                  : "blur(60px) saturate(200%)";
-                navFloating.style.webkitBackdropFilter = lowFx
-                  ? "blur(10px) saturate(130%)"
-                  : "blur(60px) saturate(200%)";
-                navFloating.style.background = "rgba(0,0,0,0.08)";
-                navFloating.style.borderColor = "rgba(255,255,255,0.08)";
-              }
-            }
-          },
+          onScroll,
           { passive: true }
         );
 
+        applyScrollUi();
+
         if (scrollTopBtn) {
-          scrollTopBtn.classList.toggle("is-visible", window.scrollY > 420);
           scrollTopBtn.addEventListener("click", () => {
             window.scrollTo({
               top: 0,
