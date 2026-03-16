@@ -1311,21 +1311,29 @@
         font-size: 9px !important;
         font-weight: 800 !important;
         letter-spacing: 0.25em !important;
-        color: #000 !important;
-        background: #fff !important;
-        border: none !important;
+        color: rgba(147, 51, 234, 0.95) !important;
+        background: transparent !important;
+        border: 1px solid rgba(147, 51, 234, 0.55) !important;
         padding: 0.55rem 1.4rem !important;
         border-radius: 2px;
         margin-left: 0.75rem;
-        transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s,
+          border-color 0.2s, transform 0.2s;
+        box-shadow: 0 0 0 1px rgba(147, 51, 234, 0.22);
+      }
+
+      .nav-btn-join::before,
+      .nav-btn-join:hover::before {
+        content: none !important;
+        display: none !important;
       }
 
       .nav-btn-join:hover {
-        background: #fff !important;
+        background: #9333ea !important;
+        border-color: #9333ea !important;
         transform: translateY(-1px);
-        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-        color: #000 !important;
+        box-shadow: 0 4px 20px rgba(147, 51, 234, 0.45);
+        color: #fff !important;
       }
 
       /* ── Mobile Menu (full-screen overlay) ── */
