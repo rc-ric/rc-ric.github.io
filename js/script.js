@@ -1,9 +1,126 @@
       document.addEventListener("DOMContentLoaded", () => {
+        const preloaderEl = document.getElementById("site-preloader");
+        const preloaderBarEl = document.getElementById("preloader-bar");
+        const preloaderPercentEl = document.getElementById("preloader-percent");
         const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
         const prefersReducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
         ).matches;
         const scrollTopBtn = document.getElementById("scroll-top-btn");
+
+        if (preloaderEl) {
+          document.body.style.overflow = "hidden";
+
+          const trackableResources = [
+            ...document.querySelectorAll(
+              "img[src], link[rel='stylesheet'][href], script[src], source[src]"
+            ),
+          ].filter((el) => !el.closest("#site-preloader"));
+
+          const totalSteps = Math.max(1, trackableResources.length + 1);
+          let completedSteps = 0;
+          let targetPercent = 1;
+          let visualPercent = 1;
+          let loaderHidden = false;
+          const doneSet = new WeakSet();
+
+          const applyProgressToUi = (progressValue) => {
+            const safeValue = Math.min(100, Math.max(1, progressValue));
+            if (preloaderBarEl) preloaderBarEl.style.width = `${safeValue}%`;
+            if (preloaderPercentEl) preloaderPercentEl.textContent = `${safeValue}%`;
+            preloaderEl
+              .querySelector("[role='progressbar']")
+              ?.setAttribute("aria-valuenow", String(safeValue));
+          };
+
+          const animateProgress = () => {
+            if (visualPercent < targetPercent) {
+              const delta = targetPercent - visualPercent;
+              visualPercent += Math.max(1, Math.ceil(delta * 0.16));
+              if (visualPercent > targetPercent) {
+                visualPercent = targetPercent;
+              }
+              applyProgressToUi(visualPercent);
+            }
+            if (!loaderHidden) {
+              window.requestAnimationFrame(animateProgress);
+            }
+          };
+
+          const syncTargetFromSteps = () => {
+            const ratio = completedSteps / totalSteps;
+            targetPercent = Math.min(99, Math.max(1, Math.floor(ratio * 99)));
+          };
+
+          const markStepComplete = (resourceEl) => {
+            if (doneSet.has(resourceEl)) return;
+            doneSet.add(resourceEl);
+            completedSteps += 1;
+            syncTargetFromSteps();
+          };
+
+          trackableResources.forEach((resourceEl) => {
+            if (resourceEl.tagName === "IMG" && resourceEl.complete) {
+              markStepComplete(resourceEl);
+              return;
+            }
+            if (
+              resourceEl.tagName === "LINK" &&
+              resourceEl.rel === "stylesheet" &&
+              resourceEl.sheet
+            ) {
+              markStepComplete(resourceEl);
+              return;
+            }
+            if (
+              resourceEl.tagName === "SCRIPT" &&
+              (resourceEl.readyState === "loaded" ||
+                resourceEl.readyState === "complete")
+            ) {
+              markStepComplete(resourceEl);
+              return;
+            }
+            resourceEl.addEventListener("load", () => markStepComplete(resourceEl), {
+              once: true,
+            });
+            resourceEl.addEventListener("error", () => markStepComplete(resourceEl), {
+              once: true,
+            });
+          });
+
+          syncTargetFromSteps();
+          applyProgressToUi(1);
+          window.requestAnimationFrame(animateProgress);
+
+          window.addEventListener(
+            "load",
+            () => {
+              completedSteps = totalSteps;
+              targetPercent = 100;
+
+              const hideLoader = () => {
+                if (loaderHidden) return;
+                loaderHidden = true;
+                preloaderEl.classList.add("is-hidden");
+                window.setTimeout(() => {
+                  preloaderEl.remove();
+                }, 480);
+                document.body.style.overflow = "";
+              };
+
+              const waitForVisual100 = () => {
+                if (visualPercent >= 100) {
+                  window.setTimeout(hideLoader, 220);
+                  return;
+                }
+                window.requestAnimationFrame(waitForVisual100);
+              };
+
+              waitForVisual100();
+            },
+            { once: true }
+          );
+        }
 
         const allImages = document.querySelectorAll("img");
         allImages.forEach((imageEl, imageIndex) => {

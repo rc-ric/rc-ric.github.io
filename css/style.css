@@ -1,5 +1,119 @@
 /* Custom Styles & Animations */
 
+      /* Preloader */
+      #site-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: grid;
+        place-items: center;
+        background: rgba(0, 0, 0, 0.96);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.45s ease, visibility 0.45s ease;
+      }
+
+      #site-preloader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .preloader-grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            rgba(147, 51, 234, 0.07) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(147, 51, 234, 0.07) 1px, transparent 1px);
+        background-size: 44px 44px;
+        opacity: 0.8;
+        filter: blur(6px);
+        transform: scale(1.02);
+        transform-origin: center;
+        pointer-events: none;
+      }
+
+      .preloader-panel {
+        width: min(90vw, 520px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(5, 5, 5, 0.65);
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+          0 24px 70px -20px rgba(0, 0, 0, 0.8),
+          0 0 40px -15px rgba(147, 51, 234, 0.35);
+        padding: 1.5rem 1.5rem 1.8rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preloader-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 120% 70% at 50% -20%,
+          rgba(147, 51, 234, 0.14) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+
+      .preloader-label {
+        font-family: "Space Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.24em;
+        color: rgba(147, 51, 234, 0.9);
+        margin-bottom: 0.7rem;
+      }
+
+      .preloader-brand {
+        font-family: "Orbitron", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.95);
+        margin-bottom: 1.15rem;
+      }
+
+      .preloader-status-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Space Mono", monospace;
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+        color: rgba(255, 255, 255, 0.66);
+        margin-bottom: 0.5rem;
+      }
+
+      #preloader-percent {
+        font-family: "Orbitron", sans-serif;
+        color: #fff;
+      }
+
+      .preloader-bar-wrap {
+        height: 10px;
+        border: 1px solid rgba(147, 51, 234, 0.35);
+        background: rgba(255, 255, 255, 0.04);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .preloader-bar {
+        height: 100%;
+        width: 1%;
+        background: linear-gradient(
+          90deg,
+          rgba(147, 51, 234, 0.75),
+          rgba(255, 255, 255, 0.95)
+        );
+        box-shadow: 0 0 18px rgba(147, 51, 234, 0.45);
+        transition: width 0.2s linear;
+      }
+
       /* Grid Background */
       .grid-bg {
         position: fixed;
