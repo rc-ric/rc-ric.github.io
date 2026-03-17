@@ -370,14 +370,36 @@
         display: table;
       }
 
-      @supports ((-webkit-background-clip: text) and (-webkit-text-fill-color: transparent)) {
+      .text-gradient-grey > span {
+        color: inherit;
+        background: none;
+        -webkit-text-fill-color: initial;
+      }
+
+      @supports (-webkit-background-clip: text) {
         .text-gradient-grey {
+          text-shadow: none;
+        }
+
+        .text-gradient-grey > span {
           background: linear-gradient(to right, #444444 0%, #ffffff 100%);
           -webkit-background-clip: text;
-          background-clip: text;
           -webkit-text-fill-color: transparent;
           color: transparent;
+          display: inline-block;
+        }
+      }
+
+      @supports (background-clip: text) {
+        .text-gradient-grey {
           text-shadow: none;
+        }
+
+        .text-gradient-grey > span {
+          background: linear-gradient(to right, #444444 0%, #ffffff 100%);
+          background-clip: text;
+          color: transparent;
+          display: inline-block;
         }
       }
 
@@ -1198,9 +1220,9 @@
 
       .nav-floating {
         border-radius: 0;
-        background: rgba(0, 0, 0, 0.15);
-        backdrop-filter: blur(80px) saturate(200%);
-        -webkit-backdrop-filter: blur(80px) saturate(200%);
+        background: rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
         border: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 8px 32px rgba(0, 0, 0, 0.3);
         transition: background 0.5s ease, border-color 0.5s ease,
@@ -1210,10 +1232,10 @@
 
       @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
         .nav-floating {
-          background: rgba(8, 8, 8, 0.78);
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45),
-            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+          background: rgba(4, 4, 4, 0.45);
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35),
+            0 0 0 1px rgba(255, 255, 255, 0.04) inset;
         }
       }
 
@@ -1224,9 +1246,9 @@
       }
 
       #header.nav-scrolled .nav-floating {
-        background: rgba(5, 5, 5, 0.6);
-        backdrop-filter: blur(100px) saturate(220%);
-        -webkit-backdrop-filter: blur(100px) saturate(220%);
+        background: rgba(4, 4, 4, 0.45);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
         border-color: rgba(255, 255, 255, 0.12);
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
           0 0 0 1px rgba(255, 255, 255, 0.04) inset;
@@ -1236,49 +1258,49 @@
 
       @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
         #header.nav-scrolled .nav-floating {
-          background: rgba(8, 8, 8, 0.88);
-          border-color: rgba(255, 255, 255, 0.16);
-          box-shadow: 0 12px 34px rgba(0, 0, 0, 0.52),
-            0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+          background: rgba(4, 4, 4, 0.55);
+          border-color: rgba(255, 255, 255, 0.12);
+          box-shadow: 0 8px 40px rgba(0, 0, 0, 0.42),
+            0 0 0 1px rgba(255, 255, 255, 0.04) inset;
         }
       }
 
       .nav-floating.nav-fx-dynamic {
         background: rgba(0, 0, 0, 0.08);
-        backdrop-filter: blur(60px) saturate(200%);
-        -webkit-backdrop-filter: blur(60px) saturate(200%);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
         border-color: rgba(255, 255, 255, 0.08);
       }
 
       @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
         .nav-floating.nav-fx-dynamic {
-          background: rgba(8, 8, 8, 0.78);
-          border-color: rgba(255, 255, 255, 0.14);
+          background: rgba(4, 4, 4, 0.45);
+          border-color: rgba(255, 255, 255, 0.12);
         }
       }
 
       #header.nav-scrolled .nav-floating.nav-fx-dynamic {
         background: rgba(4, 4, 4, 0.45);
-        backdrop-filter: blur(80px) saturate(220%);
-        -webkit-backdrop-filter: blur(80px) saturate(220%);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
         border-color: rgba(255, 255, 255, 0.12);
       }
 
       @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
         #header.nav-scrolled .nav-floating.nav-fx-dynamic {
-          background: rgba(8, 8, 8, 0.88);
-          border-color: rgba(255, 255, 255, 0.16);
+          background: rgba(4, 4, 4, 0.55);
+          border-color: rgba(255, 255, 255, 0.12);
         }
       }
 
       .nav-floating.nav-fx-dynamic.is-low-fx {
-        backdrop-filter: blur(10px) saturate(130%);
-        -webkit-backdrop-filter: blur(10px) saturate(130%);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
       }
 
       #header.nav-scrolled .nav-floating.nav-fx-dynamic.is-low-fx {
-        backdrop-filter: blur(14px) saturate(140%);
-        -webkit-backdrop-filter: blur(14px) saturate(140%);
+        backdrop-filter: blur(24px) saturate(150%);
+        -webkit-backdrop-filter: blur(24px) saturate(150%);
       }
 
       /* Logo */
@@ -1383,6 +1405,12 @@
           transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
+      @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+        #mobile-menu {
+          background: rgba(2, 2, 2, 0.985);
+        }
+      }
+
       #mobile-menu.open {
         opacity: 1;
         pointer-events: all;
@@ -1441,15 +1469,19 @@
         font-size: clamp(1.5rem, 6vw, 2.25rem);
         font-weight: 800;
         letter-spacing: 0.04em;
-        color: rgba(255, 255, 255, 0.25);
+        color: rgba(107, 33, 168, 0.95);
         padding: 0.5rem 0;
         transition: color 0.2s ease, transform 0.2s ease;
         line-height: 1.2;
       }
 
       #mobile-menu a:hover {
-        color: #fff;
+        color: #9333ea;
         transform: translateX(8px);
+      }
+
+      #mobile-menu a.is-active {
+        color: #9333ea;
       }
 
       #mobile-menu a.join-link {
@@ -1540,6 +1572,12 @@
       #menu-btn {
         position: relative;
         z-index: 50;
+        color: rgba(147, 51, 234, 0.95);
+      }
+
+      #menu-btn:hover,
+      #menu-btn.open {
+        color: #c084fc;
       }
 
       #menu-btn.open .hamburger-bar:nth-child(1) {
