@@ -1122,6 +1122,52 @@
         transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
+      #about .about-label {
+        opacity: 0.62;
+      }
+
+      #about .about-heading {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      #about .about-text-block p.text-white\/80 {
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      #about .about-text-block p.text-white\/60 {
+        color: rgba(255, 255, 255, 0.52);
+      }
+
+      #about .about-text-block:hover,
+      #about .about-text-block:focus-within {
+        background: rgba(255, 255, 255, 0.028);
+        border-color: rgba(147, 51, 234, 0.16);
+        transform: translateY(-1px);
+        box-shadow: 0 12px 28px -22px rgba(0, 0, 0, 0.62),
+          0 0 0 1px rgba(147, 51, 234, 0.08) inset;
+      }
+
+      #about .about-text-block:hover p,
+      #about .about-text-block:focus-within p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      #about .about-img-wrap {
+        transition: transform 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+          background 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      #about .about-img-wrap:hover,
+      #about .about-img-wrap:focus-within {
+        background: rgba(255, 255, 255, 0.028);
+        border-color: rgba(147, 51, 234, 0.16);
+        transform: translateY(-1px);
+        box-shadow: 0 14px 32px -24px rgba(0, 0, 0, 0.64),
+          0 0 0 1px rgba(147, 51, 234, 0.08) inset;
+      }
+
       /* Footer Glass Redesign */
       .footer-glass {
         background: rgba(255, 255, 255, 0.02);
@@ -1301,20 +1347,6 @@
       #header.nav-scrolled .nav-floating.nav-fx-dynamic.is-low-fx {
         backdrop-filter: blur(24px) saturate(150%);
         -webkit-backdrop-filter: blur(24px) saturate(150%);
-      }
-
-      @media (min-width: 768px) {
-        .nav-floating,
-        .nav-floating.nav-fx-dynamic,
-        .nav-floating.nav-fx-dynamic.is-low-fx,
-        #header.nav-scrolled .nav-floating,
-        #header.nav-scrolled .nav-floating.nav-fx-dynamic,
-        #header.nav-scrolled .nav-floating.nav-fx-dynamic.is-low-fx {
-          background: rgb(4, 4, 4) !important;
-          border-color: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(24px) saturate(150%);
-          -webkit-backdrop-filter: blur(24px) saturate(150%);
-        }
       }
 
       /* Logo */
@@ -2394,12 +2426,13 @@
         position: relative;
         z-index: 2;
         flex-shrink: 0;
-        transition: box-shadow 0.4s ease, transform 0.4s ease;
+        transition: box-shadow 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .timeline-item:hover .timeline-dot {
-        box-shadow: 0 0 22px rgba(147, 51, 234, 0.9);
-        transform: scale(1.25);
+        box-shadow: 0 0 18px rgba(147, 51, 234, 0.75);
+        transform: scale(1.14);
       }
 
       /* ── Cards ── */
@@ -2408,26 +2441,29 @@
         border: 1px solid rgba(255, 255, 255, 0.06);
         padding: 1.4rem 1.6rem;
         position: relative;
-        transition: border-color 0.4s ease, background 0.4s ease;
+        transition: border-color 0.68s cubic-bezier(0.16, 1, 0.3, 1),
+          background 0.68s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.68s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.68s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .timeline-card:hover {
-        border-color: rgba(147, 51, 234, 0.3);
-        background: rgba(147, 51, 234, 0.03);
+        border-color: rgba(147, 51, 234, 0.18);
+        background: rgba(147, 51, 234, 0.018);
       }
 
       /* Restore richer timeline hover behavior on desktop pointers. */
       @media (hover: hover) and (pointer: fine) {
         .timeline-left .timeline-card:hover {
-          transform: translateX(-6px);
-          box-shadow: 0 18px 35px -20px rgba(0, 0, 0, 0.8),
-            0 0 24px -10px rgba(147, 51, 234, 0.45);
+          transform: translateX(-3px);
+          box-shadow: 0 12px 24px -20px rgba(0, 0, 0, 0.64),
+            0 0 14px -12px rgba(147, 51, 234, 0.26);
         }
 
         .timeline-right .timeline-card:hover {
-          transform: translateX(6px);
-          box-shadow: 0 18px 35px -20px rgba(0, 0, 0, 0.8),
-            0 0 24px -10px rgba(147, 51, 234, 0.45);
+          transform: translateX(3px);
+          box-shadow: 0 12px 24px -20px rgba(0, 0, 0, 0.64),
+            0 0 14px -12px rgba(147, 51, 234, 0.26);
         }
       }
 
@@ -2764,18 +2800,23 @@
 
       /* Lightbox */
       #lightbox {
-        display: none;
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.92);
-        z-index: 9999;
+        z-index: 100;
+        display: flex;
         align-items: center;
         justify-content: center;
-        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.9);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
       }
 
       #lightbox.open {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
       }
 
       #lightbox img {
