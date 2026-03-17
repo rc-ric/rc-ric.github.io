@@ -364,12 +364,21 @@
       }
 
       .text-gradient-grey {
-        color: #fff;
-        background: linear-gradient(to right, #444444 0%, #ffffff 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #d7d7d7;
+        text-shadow: 0 0 18px rgba(255, 255, 255, 0.14),
+          0 0 2px rgba(255, 255, 255, 0.35);
         display: table;
+      }
+
+      @supports ((-webkit-background-clip: text) and (-webkit-text-fill-color: transparent)) {
+        .text-gradient-grey {
+          background: linear-gradient(to right, #444444 0%, #ffffff 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          color: transparent;
+          text-shadow: none;
+        }
       }
 
       .hud-dot {
@@ -1199,6 +1208,15 @@
         position: relative;
       }
 
+      @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+        .nav-floating {
+          background: rgba(8, 8, 8, 0.78);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45),
+            0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+      }
+
       #header.nav-scrolled {
         top: 0.75rem;
         width: 88%;
@@ -1216,6 +1234,15 @@
         padding-bottom: 0.6rem;
       }
 
+      @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+        #header.nav-scrolled .nav-floating {
+          background: rgba(8, 8, 8, 0.88);
+          border-color: rgba(255, 255, 255, 0.16);
+          box-shadow: 0 12px 34px rgba(0, 0, 0, 0.52),
+            0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+        }
+      }
+
       .nav-floating.nav-fx-dynamic {
         background: rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(60px) saturate(200%);
@@ -1223,11 +1250,25 @@
         border-color: rgba(255, 255, 255, 0.08);
       }
 
+      @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+        .nav-floating.nav-fx-dynamic {
+          background: rgba(8, 8, 8, 0.78);
+          border-color: rgba(255, 255, 255, 0.14);
+        }
+      }
+
       #header.nav-scrolled .nav-floating.nav-fx-dynamic {
         background: rgba(4, 4, 4, 0.45);
         backdrop-filter: blur(80px) saturate(220%);
         -webkit-backdrop-filter: blur(80px) saturate(220%);
         border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+        #header.nav-scrolled .nav-floating.nav-fx-dynamic {
+          background: rgba(8, 8, 8, 0.88);
+          border-color: rgba(255, 255, 255, 0.16);
+        }
       }
 
       .nav-floating.nav-fx-dynamic.is-low-fx {
