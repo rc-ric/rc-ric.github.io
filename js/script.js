@@ -433,26 +433,51 @@
           .forEach((el) => counterObserver.observe(el));
 
         // Active nav on scroll
-        const sections = document.querySelectorAll("section[id]");
-        const navItems = document.querySelectorAll(
-          ".nav-item:not(.nav-btn-join)"
+        const sections = Array.from(document.querySelectorAll("section[id]"));
+        const navItems = Array.from(
+          document.querySelectorAll(".nav-item:not(.nav-btn-join)")
         );
-        const activeObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                navItems.forEach((item) => {
-                  item.classList.toggle(
-                    "is-active",
-                    item.getAttribute("href") === "#" + entry.target.id
-                  );
-                });
-              }
-            });
-          },
-          { threshold: 0.4 }
-        );
-        sections.forEach((s) => activeObserver.observe(s));
+
+        const setActiveNavItem = (sectionId) => {
+          navItems.forEach((item) => {
+            item.classList.toggle(
+              "is-active",
+              item.getAttribute("href") === `#${sectionId}`
+            );
+          });
+        };
+
+        const updateActiveNavOnScroll = () => {
+          if (!sections.length || !navItems.length) return;
+
+          const headerOffset = header?.offsetHeight || 0;
+          const probeY = window.scrollY + headerOffset + window.innerHeight * 0.35;
+
+          let currentSectionId = sections[sections.length - 1].id;
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (probeY >= sectionTop && probeY < sectionBottom) {
+              currentSectionId = section.id;
+            }
+          });
+
+          setActiveNavItem(currentSectionId);
+        };
+
+        updateActiveNavOnScroll();
+        window.addEventListener("scroll", updateActiveNavOnScroll, {
+          passive: true,
+        });
+        window.addEventListener("resize", updateActiveNavOnScroll);
+        navItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const targetId = item.getAttribute("href")?.replace("#", "");
+            if (targetId) setActiveNavItem(targetId);
+          });
+        });
 
         // ── Feature card: auto-shine on scroll-in ──
         const featureCards = document.querySelectorAll(".feature-card");
