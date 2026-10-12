@@ -585,6 +585,169 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     fObserver.observe(footerGlass);
   }
+
+  const recruitmentForm = document.getElementById("rcric-membership-form");
+  if (recruitmentForm) {
+    const classSelect = document.getElementById("entry.781799042");
+    const facultyField = document.getElementById("faculty-field");
+    const facultySelect = document.getElementById("entry.1736517053");
+    const copyPaymentBtn = document.getElementById("copy-payment-btn");
+    const copyPaymentStatus = document.getElementById("copy-payment-status");
+    const interestCheckboxes = Array.from(
+      document.querySelectorAll('[name="entry.274021497"]'),
+    );
+    const interestsError = document.getElementById("interests-error");
+    const submitButton = document.getElementById("submit-button");
+    const formStatus = document.getElementById("form-status");
+    const googleFormResponseFrame = document.getElementById(
+      "google-form-response",
+    );
+
+    const setFormStatus = (message, tone = "info") => {
+      if (!formStatus) return;
+      formStatus.textContent = message;
+      formStatus.dataset.tone = tone;
+    };
+
+    const toggleFacultyField = () => {
+      if (!facultyField || !facultySelect || !classSelect) return;
+
+      facultyField.hidden = false;
+      facultySelect.disabled = false;
+      facultySelect.required = true;
+    };
+
+    const validateInterests = () => {
+      const hasSelection = interestCheckboxes.some(
+        (checkbox) => checkbox.checked,
+      );
+
+      if (interestsError) {
+        interestsError.textContent = hasSelection
+          ? ""
+          : "Please select at least one area of interest.";
+      }
+
+      interestCheckboxes.forEach((checkbox) => {
+        checkbox.setCustomValidity(
+          hasSelection ? "" : "Please select at least one area of interest.",
+        );
+      });
+
+      return hasSelection;
+    };
+
+    if (classSelect) {
+      classSelect.addEventListener("change", toggleFacultyField);
+      toggleFacultyField();
+    }
+
+    interestCheckboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        validateInterests();
+      });
+    });
+
+    if (copyPaymentBtn) {
+      copyPaymentBtn.addEventListener("click", async () => {
+        const paymentNumber = "01312526117";
+
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(paymentNumber);
+          } else {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = paymentNumber;
+            tempInput.setAttribute("readonly", "");
+            tempInput.style.position = "fixed";
+            tempInput.style.left = "-9999px";
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+          }
+
+          if (copyPaymentStatus) {
+            copyPaymentStatus.textContent = "Payment number copied.";
+            copyPaymentStatus.classList.add("is-success");
+          }
+
+          copyPaymentBtn.textContent = "Copied";
+          window.setTimeout(() => {
+            copyPaymentBtn.textContent = "Copy number";
+            if (copyPaymentStatus) {
+              copyPaymentStatus.textContent = "";
+              copyPaymentStatus.classList.remove("is-success");
+            }
+          }, 1800);
+        } catch (error) {
+          if (copyPaymentStatus) {
+            copyPaymentStatus.textContent =
+              "Clipboard access failed. Please copy 01312526117 manually.";
+            copyPaymentStatus.classList.add("is-error");
+          }
+
+          window.setTimeout(() => {
+            if (copyPaymentStatus) {
+              copyPaymentStatus.textContent = "";
+              copyPaymentStatus.classList.remove("is-error");
+            }
+          }, 2600);
+        }
+      });
+    }
+
+    recruitmentForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!recruitmentForm.checkValidity()) {
+        recruitmentForm.reportValidity();
+        setFormStatus(
+          "Please complete all required fields before submitting.",
+          "error",
+        );
+        return;
+      }
+
+      if (!validateInterests()) {
+        setFormStatus("Please select at least one area of interest.", "error");
+        interestsError?.focus();
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+      }
+
+      setFormStatus(
+        "Your application is being sent to Google Forms...",
+        "info",
+      );
+
+      if (googleFormResponseFrame) {
+        const handleFrameLoad = () => {
+          setFormStatus(
+            "The request reached Google Forms, but this page cannot verify whether the response was recorded because Google blocks cross-origin inspection. Please check your WhatsApp within 24–48 hours and contact the club if you do not receive confirmation.",
+            "warning",
+          );
+
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Submit application";
+          }
+        };
+
+        googleFormResponseFrame.addEventListener("load", handleFrameLoad, {
+          once: true,
+        });
+      }
+
+      recruitmentForm.submit();
+    });
+
+    validateInterests();
+  }
 });
 
 // Lightbox

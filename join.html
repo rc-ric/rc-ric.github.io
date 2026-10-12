@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Join Rajuk College Robotics & ICT Club (RCRIC) for 2026 recruitment. Learn about membership, payment, and the application form."
+    />
+    <title>Join RCRIC | Rajuk College Robotics & ICT Club</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@100;200;300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["IBM Plex Mono", "Space Mono", "monospace"],
+              display: ["Orbitron", "sans-serif"],
+              tech: ["Orbitron", "monospace"],
+            },
+            colors: {
+              accent: "#9333ea",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon_io/favicon-16x16.png"
+    />
+    <link rel="icon" href="favicon_io/favicon.ico" />
+    <link rel="manifest" href="favicon_io/site.webmanifest" />
+  </head>
+
+  <body class="bg-black text-white font-sans antialiased overflow-x-hidden">
+    <div id="site-preloader" aria-live="polite" aria-label="Loading page">
+      <div class="preloader-grid"></div>
+      <div class="preloader-panel">
+        <div class="preloader-label">// RCRIC_BOOT_SEQUENCE</div>
+        <div class="preloader-brand">RCRIC</div>
+        <div class="preloader-status-row">
+          <span>INITIALIZING_SYSTEMS</span>
+          <span id="preloader-percent">1%</span>
+        </div>
+        <div
+          class="preloader-bar-wrap"
+          role="progressbar"
+          aria-valuemin="1"
+          aria-valuemax="100"
+          aria-valuenow="1"
+          aria-label="Website loading progress"
+        >
+          <div id="preloader-bar" class="preloader-bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-bg"></div>
+    <div class="grid-lights" aria-hidden="true">
+      <div class="grid-orb orb-1"></div>
+      <div class="grid-orb orb-2"></div>
+      <div class="grid-orb orb-3"></div>
+      <div class="grid-orb orb-4"></div>
+    </div>
+
+    <header
+      class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] z-50"
+      id="header"
+    >
+      <nav
+        class="nav-floating flex items-center justify-between px-7 py-4 relative"
+        id="main-nav"
+      >
+        <a
+          href="index.html"
+          class="nav-logo relative z-10"
+          aria-label="Return to home page"
+        >
+          <span>RCRIC</span>
+        </a>
+
+        <ul class="hidden md:flex items-center gap-0">
+          <li>
+            <a href="index.html#home" class="nav-item" data-label="HOME"
+              >HOME</a
+            >
+          </li>
+          <li>
+            <a
+              href="index.html#features"
+              class="nav-item"
+              data-label="ACTIVITIES"
+              >ACTIVITIES</a
+            >
+          </li>
+          <li>
+            <a href="index.html#projects" class="nav-item" data-label="PROJECT"
+              >PROJECT</a
+            >
+          </li>
+          <li>
+            <a href="index.html#about" class="nav-item" data-label="ABOUT"
+              >ABOUT</a
+            >
+          </li>
+          <li>
+            <a href="index.html#gallery" class="nav-item" data-label="GALLERY"
+              >GALLERY</a
+            >
+          </li>
+          <li>
+            <a href="index.html#timeline" class="nav-item" data-label="TIMELINE"
+              >TIMELINE</a
+            >
+          </li>
+          <li>
+            <a
+              href="join.html#application-form"
+              class="nav-item nav-btn-join is-active"
+              data-label="JOIN"
+              >JOIN</a
+            >
+          </li>
+        </ul>
+
+        <button
+          id="menu-btn"
+          class="md:hidden relative z-50 p-2 text-white/70 hover:text-white"
+          aria-label="Toggle menu"
+        >
+          <div class="w-6 flex flex-col gap-[6px]">
+            <span class="hamburger-bar w-full"></span>
+            <span class="hamburger-bar w-4/5"></span>
+            <span class="hamburger-bar w-3/5"></span>
+          </div>
+        </button>
+      </nav>
+    </header>
+
+    <div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Navigation"
+    >
+      <div class="mobile-menu-divider"></div>
+      <a href="index.html#home">HOME</a>
+      <a href="index.html#features">ACTIVITIES</a>
+      <a href="index.html#projects">PROJECTS</a>
+      <a href="index.html#about">ABOUT</a>
+      <a href="index.html#gallery">GALLERY</a>
+      <a href="index.html#timeline">TIMELINE</a>
+      <a href="join.html#application-form" class="join-link is-active"
+        >JOIN_US</a
+      >
+      <div class="mobile-menu-footer">RCRIC // SYS_UPLINK_ACTIVE</div>
+    </div>
+
+    <main class="join-page">
+      <section class="join-shell join-hero relative">
+        <div class="join-hero-grid">
+          <div class="join-copy reveal-text delay-100">
+            <div class="glass-tag">
+              <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
+              <code
+                class="font-tech text-[10px] tracking-wider text-white/90 font-bold glass-code px-3 py-1.5 rounded"
+              >
+                // RCRIC MEMBER RECRUITMENT 2026
+              </code>
+            </div>
+
+            <h1
+              class="join-title font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-gradient-grey"
+            >
+              Build the future. Join RCRIC.
+            </h1>
+
+            <p
+              class="join-intro text-lg text-white/70 max-w-2xl leading-relaxed"
+            >
+              We are recruiting students who are passionate about robotics,
+              programming, ICT, innovation, and leadership. Take your skills to
+              the next level with hands-on learning, creative challenges, and a
+              strong community of makers.
+            </p>
+
+            <div class="join-actions flex flex-col sm:flex-row gap-4">
+              <a
+                href="#application-form"
+                class="inline-flex items-center justify-center px-10 py-5 font-tech tracking-[0.2em] font-bold text-center text-white rounded-lg btn-glass group transition-transform active:scale-95 shadow-[0_0_20px_rgba(147,51,234,0.1)] hover:shadow-[0_0_30px_rgba(147,51,234,0.2)]"
+              >
+                <span class="relative z-10">APPLY_NOW</span>
+              </a>
+              <a
+                href="index.html#about"
+                class="inline-flex items-center justify-center px-8 py-5 font-tech tracking-[0.14em] font-bold text-white/70 rounded-lg border border-white/10 bg-white/3 hover:border-white/20 hover:text-white transition-colors"
+              >
+                LEARN_MORE
+              </a>
+            </div>
+          </div>
+
+          <aside
+            class="join-panel reveal-card delay-200"
+            aria-label="Recruitment summary"
+          >
+            <div
+              class="join-panel-head font-tech text-[10px] tracking-[0.3em] text-white/50"
+            >
+              // RECRUITMENT_SUMMARY
+            </div>
+            <div class="join-stat-grid">
+              <div class="join-stat">
+                <span class="join-stat-label">Membership fee</span>
+                <strong>TK. 350</strong>
+              </div>
+              <div class="join-stat">
+                <span class="join-stat-label">Payment</span>
+                <strong>bKash</strong>
+              </div>
+              <div class="join-stat">
+                <span class="join-stat-label">Status</span>
+                <strong>Open</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        class="join-shell join-section"
+        aria-labelledby="registration-details"
+      >
+        <div class="section-heading reveal-text delay-100">
+          <div
+            class="font-tech text-xs tracking-[0.35em] text-accent uppercase opacity-75"
+          >
+            // REGISTRATION_DETAILS
+          </div>
+          <h2
+            id="registration-details"
+            class="font-display text-3xl md:text-4xl font-bold mt-4"
+          >
+            Your membership starts here.
+          </h2>
+        </div>
+
+        <div class="join-detail-grid reveal-card delay-200">
+          <article class="join-detail-card">
+            <span class="join-detail-kicker">Fee</span>
+            <h3>TK. 350</h3>
+            <p>One-time membership fee for the recruitment cycle.</p>
+          </article>
+          <article class="join-detail-card">
+            <span class="join-detail-kicker">Payment method</span>
+            <h3>bKash</h3>
+            <p>Send Money through the bKash app to the number below.</p>
+          </article>
+          <article class="join-detail-card">
+            <span class="join-detail-kicker">Availability</span>
+            <h3>Open</h3>
+            <p>Applications are currently open for interested members.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="join-shell join-section" aria-labelledby="why-join-rcric">
+        <div class="section-heading reveal-text delay-100">
+          <div
+            class="font-tech text-xs tracking-[0.35em] text-accent uppercase opacity-75"
+          >
+            // WHY_JOIN_RCRIC
+          </div>
+          <h2
+            id="why-join-rcric"
+            class="font-display text-3xl md:text-4xl font-bold mt-4"
+          >
+            Why join RCRIC?
+          </h2>
+        </div>
+
+        <div class="benefit-grid reveal-card delay-200">
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">01</div>
+            <h3>Hands-on Workshops</h3>
+            <p>Privileged entry to workshops and masterclasses.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">02</div>
+            <h3>Access</h3>
+            <p>Exclusive access to robotics parts and mechanics.</p>
+          </article>
+          <article class="benefit-card">
+            <div class="benefit-icon" aria-hidden="true">03</div>
+            <h3>Networking</h3>
+            <p>
+              Opportunities to connect with international award-winning teams
+              and alumni.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="join-shell join-section"
+        aria-labelledby="payment-process"
+      >
+        <div class="section-heading reveal-text delay-100">
+          <div
+            class="font-tech text-xs tracking-[0.35em] text-accent uppercase opacity-75"
+          >
+            // PAYMENT_INSTRUCTIONS
+          </div>
+          <h2
+            id="payment-process"
+            class="font-display text-3xl md:text-4xl font-bold mt-4"
+          >
+            Payment and verification
+          </h2>
+        </div>
+
+        <div class="payment-card reveal-card delay-200">
+          <div class="payment-steps">
+            <ol>
+              <li>Open the bKash app.</li>
+              <li>Select “Send Money”.</li>
+              <li>Enter <strong>01312526117</strong>.</li>
+              <li>Send <strong>Tk. 350</strong>.</li>
+              <li>
+                Copy the Transaction ID from the confirmation screen or SMS.
+              </li>
+              <li>Enter the Transaction ID in the application form.</li>
+            </ol>
+          </div>
+
+          <div
+            class="payment-callout"
+            aria-label="Payment number and copy action"
+          >
+            <span class="payment-label">bKash number</span>
+            <div class="payment-row">
+              <div class="payment-number" id="payment-number">01312526117</div>
+              <button
+                type="button"
+                class="copy-payment-btn"
+                id="copy-payment-btn"
+                aria-live="polite"
+              >
+                Copy number
+              </button>
+            </div>
+            <div
+              id="copy-payment-status"
+              class="copy-payment-status"
+              aria-live="polite"
+            ></div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="application-form"
+        class="join-shell join-section join-form-section"
+        aria-labelledby="form-title"
+      >
+        <div class="section-heading reveal-text delay-100">
+          <div
+            class="font-tech text-xs tracking-[0.35em] text-accent uppercase opacity-75"
+          >
+            // APPLICATION_FORM
+          </div>
+          <h2
+            id="form-title"
+            class="font-display text-3xl md:text-4xl font-bold mt-4"
+          >
+            Membership application
+          </h2>
+        </div>
+
+        <div class="join-form-shell reveal-card delay-200">
+          <form
+            id="rcric-membership-form"
+            action="https://docs.google.com/forms/d/e/1FAIpQLSc3vb0P07Soe61shKEGtVOy-gBvA66dWDlsdmHe07niiBExaw/formResponse"
+            method="POST"
+            target="google-form-response"
+            novalidate
+          >
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="entry.366406682">Name</label>
+                <input
+                  id="entry.366406682"
+                  name="entry.366406682"
+                  type="text"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="entry.36455327">Email</label>
+                <input
+                  id="entry.36455327"
+                  name="entry.36455327"
+                  type="email"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="entry.369291819">College code</label>
+                <input
+                  id="entry.369291819"
+                  name="entry.369291819"
+                  type="text"
+                  required
+                  autocomplete="off"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="entry.781799042">Class</label>
+                <select id="entry.781799042" name="entry.781799042" required>
+                  <option value="" selected disabled>Select class</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="entry.1962169670">Form</label>
+                <select id="entry.1962169670" name="entry.1962169670" required>
+                  <option value="" selected disabled>Select form</option>
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                  <option value="D">D</option>
+                  <option value="E">E</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="entry.1231628991">Wing</label>
+                <select id="entry.1231628991" name="entry.1231628991" required>
+                  <option value="" selected disabled>Select wing</option>
+                  <option value="EMMS">EMMS</option>
+                  <option value="BMMS">BMMS</option>
+                  <option value="EMDS">EMDS</option>
+                  <option value="BMDS">BMDS</option>
+                </select>
+              </div>
+
+              <div class="form-field" id="faculty-field">
+                <label for="entry.1736517053">Faculty</label>
+                <select id="entry.1736517053" name="entry.1736517053" required>
+                  <option value="" selected disabled>Select faculty</option>
+                  <option value="Science">Science</option>
+                  <option value="Commerce">Commerce</option>
+                  <option value="Arts">Arts</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="interest-section">
+              <div class="interest-header">
+                <label class="interest-label" id="interest-label"
+                  >Areas of interest</label
+                >
+                <span class="field-hint">Select at least one option.</span>
+              </div>
+
+              <div
+                class="interest-grid"
+                role="group"
+                aria-labelledby="interest-label"
+              >
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="Programming"
+                  />
+                  <span>Programming</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="Machine Learning"
+                  />
+                  <span>Machine Learning</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="Robotics"
+                  />
+                  <span>Robotics</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="Graphics Designing"
+                  />
+                  <span>Graphics Designing</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="E-sports"
+                  />
+                  <span>E-sports</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="Web Development"
+                  />
+                  <span>Web Development</span>
+                </label>
+                <label class="interest-option">
+                  <input
+                    type="checkbox"
+                    name="entry.274021497"
+                    value="3D Modeling"
+                  />
+                  <span>3D Modeling</span>
+                </label>
+              </div>
+              <div
+                id="interests-error"
+                class="field-error"
+                role="alert"
+                aria-live="assertive"
+                tabindex="-1"
+              ></div>
+            </div>
+
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="entry.1726631787">WhatsApp number</label>
+                <input
+                  id="entry.1726631787"
+                  name="entry.1726631787"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="tel"
+                  required
+                  placeholder="01XXXXXXXXX"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="entry.1939727964">bKash number</label>
+                <input
+                  id="entry.1939727964"
+                  name="entry.1939727964"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="tel"
+                  required
+                  placeholder="01XXXXXXXXX"
+                />
+              </div>
+            </div>
+
+            <div class="payment-fieldset">
+              <div class="form-field">
+                <label for="entry.1465076139"
+                  >bKash Transaction ID (Registration fee — Tk. 350)</label
+                >
+                <input
+                  id="entry.1465076139"
+                  name="entry.1465076139"
+                  type="text"
+                  required
+                  placeholder="Copy the TrxID from your successful payment confirmation"
+                />
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="entry.1356142118">Reference</label>
+              <input
+                id="entry.1356142118"
+                name="entry.1356142118"
+                type="text"
+                placeholder="Who referred you? (if applicable)"
+              />
+            </div>
+
+            <div class="form-metadata" aria-live="polite">
+              <p>
+                After your fee is verified, you will be informed through
+                WhatsApp within 24–48 hours.
+              </p>
+            </div>
+
+            <div class="submit-row">
+              <button
+                id="submit-button"
+                type="submit"
+                class="submit-button btn-glass"
+              >
+                Submit application
+              </button>
+              <div
+                id="form-status"
+                class="form-status"
+                aria-live="polite"
+                aria-atomic="true"
+              ></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section
+        class="join-shell join-closing reveal-text delay-200"
+        aria-labelledby="closing-message"
+      >
+        <div class="closing-panel">
+          <p id="closing-message" class="closing-text">
+            The next era of innovation starts with you. Unleash your potential.
+            Join the legacy.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-20 px-6 bg-black/40">
+      <div
+        class="max-w-7xl mx-auto footer-glass p-12 md:p-16 relative overflow-hidden"
+      >
+        <div class="tech-corner tl !w-8 !h-8 opacity-30"></div>
+        <div class="tech-corner tr !w-8 !h-8 opacity-30"></div>
+        <div class="tech-corner bl !w-8 !h-8 opacity-30"></div>
+        <div class="tech-corner br !w-8 !h-8 opacity-30"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+          <div>
+            <div
+              class="font-tech text-[10px] tracking-[0.3em] text-white/50 mb-5"
+            >
+              // CLUB
+            </div>
+            <div class="font-display text-2xl font-bold">RCRIC</div>
+            <p class="mt-4 text-white/60 text-sm leading-relaxed">
+              Rajuk College Robotics & ICT Club drives practical innovation,
+              teamwork, and leadership.
+            </p>
+          </div>
+
+          <div>
+            <div
+              class="font-tech text-[10px] tracking-[0.3em] text-white/50 mb-5"
+            >
+              // NAV
+            </div>
+            <ul class="space-y-3 text-sm text-white/65">
+              <li>
+                <a
+                  href="index.html#home"
+                  class="hover:text-white transition-colors"
+                  >Home</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#features"
+                  class="hover:text-white transition-colors"
+                  >Activities</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#projects"
+                  class="hover:text-white transition-colors"
+                  >Projects</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div
+              class="font-tech text-[10px] tracking-[0.3em] text-white/50 mb-5"
+            >
+              // INFO
+            </div>
+            <ul class="space-y-3 text-sm text-white/65">
+              <li>
+                <a
+                  href="join.html#application-form"
+                  class="hover:text-white transition-colors"
+                  >Recruitment</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#about"
+                  class="hover:text-white transition-colors"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="index.html#gallery"
+                  class="hover:text-white transition-colors"
+                  >Gallery</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div
+              class="font-tech text-[10px] tracking-[0.3em] text-white/50 mb-5"
+            >
+              // STATUS
+            </div>
+            <p class="text-sm text-white/70 leading-relaxed">
+              Recruitment is open for the 2026 cycle. Submit your application
+              and wait for WhatsApp confirmation.
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30 relative z-10"
+        >
+          <span>© 2026 RCRIC</span>
+          <span>RAJUK COLLEGE ROBOTICS & ICT CLUB</span>
+        </div>
+      </div>
+    </footer>
+
+    <button
+      id="scroll-top-btn"
+      class="group"
+      aria-label="Scroll to top"
+      title="Back to top"
+    >
+      <span class="tech-corner tl" aria-hidden="true"></span>
+      <span class="tech-corner tr" aria-hidden="true"></span>
+      <span class="tech-corner bl" aria-hidden="true"></span>
+      <span class="tech-corner br" aria-hidden="true"></span>
+      <span class="scroll-top-icon" aria-hidden="true">^</span>
+    </button>
+
+    <iframe
+      id="google-form-response"
+      name="google-form-response"
+      title="Google Form response target"
+      style="display: none"
+    ></iframe>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

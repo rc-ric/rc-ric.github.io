@@ -2920,6 +2920,600 @@ body {
   border-color: rgba(255, 255, 255, 0.3);
 }
 
+/* ── Recruitment page styles ── */
+.join-page {
+  position: relative;
+  z-index: 1;
+  padding-top: 7rem;
+  padding-bottom: 4rem;
+}
+
+.join-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.join-hero {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.join-hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.join-copy {
+  max-width: 760px;
+}
+
+.join-title {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.join-intro {
+  margin-bottom: 2rem;
+}
+
+.join-actions {
+  margin-top: 1.5rem;
+}
+
+.join-panel,
+.join-detail-card,
+.payment-card,
+.benefit-card,
+.join-form-shell,
+.closing-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 80px -32px rgba(147, 51, 234, 0.18);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.join-panel {
+  padding: 1.5rem;
+}
+
+.join-panel-head {
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+.join-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.join-stat {
+  padding: 1rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 120px;
+}
+
+.join-stat-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: "Space Mono", monospace;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.join-stat strong {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: #fff;
+}
+
+.join-section {
+  padding-top: 4rem;
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.join-detail-grid,
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.join-detail-card,
+.benefit-card {
+  padding: 1.5rem;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.join-detail-card:hover,
+.benefit-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(147, 51, 234, 0.4);
+  box-shadow: 0 28px 80px -30px rgba(147, 51, 234, 0.26);
+}
+
+.join-detail-kicker,
+.benefit-icon {
+  display: inline-flex;
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(147, 51, 234, 0.9);
+}
+
+.join-detail-card h3,
+.benefit-card h3 {
+  margin-top: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+}
+
+.join-detail-card p,
+.benefit-card p,
+.payment-steps li,
+.form-metadata p {
+  color: rgba(255, 255, 255, 0.68);
+  line-height: 1.7;
+}
+
+.benefit-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(147, 51, 234, 0.35);
+  background: rgba(147, 51, 234, 0.08);
+  border-radius: 9999px;
+}
+
+.payment-card {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+}
+
+.payment-steps {
+  padding-left: 1.1rem;
+}
+
+.payment-steps ol {
+  list-style: decimal;
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.payment-callout {
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  background: rgba(147, 51, 234, 0.04);
+  padding: 1.25rem;
+}
+
+.payment-label {
+  display: block;
+  font-size: 0.63rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+  margin-bottom: 0.75rem;
+  font-family: "Space Mono", monospace;
+}
+
+.payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.payment-number {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.copy-payment-btn {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.copy-payment-btn:hover,
+.copy-payment-btn:focus-visible {
+  border-color: rgba(147, 51, 234, 0.6);
+  background: rgba(147, 51, 234, 0.08);
+  transform: translateY(-1px);
+}
+
+.copy-payment-status {
+  min-height: 1.2rem;
+  margin-top: 0.8rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.copy-payment-status.is-success {
+  color: #a7f3d0;
+}
+
+.copy-payment-status.is-error {
+  color: #fca5a5;
+}
+
+.join-form-section {
+  margin-top: 2rem;
+}
+
+.join-form-shell {
+  padding: 1.5rem;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.form-field label,
+.interest-label {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-field select option {
+  background: rgba(9, 10, 18, 0.96);
+  color: #fff;
+  padding: 0.8rem 0.9rem;
+}
+
+.form-field select option:checked,
+.form-field select option:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.35),
+    rgba(168, 85, 247, 0.18)
+  );
+  color: #fff;
+}
+
+.form-field input::placeholder {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.copy-payment-btn:focus-visible,
+.submit-button:focus-visible,
+.interest-option:focus-within {
+  outline: none;
+  border-color: rgba(147, 51, 234, 0.7);
+  box-shadow: 0 0 0 2px rgba(147, 51, 234, 0.22);
+}
+
+.form-field select {
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, 0.75) 50%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.75) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(50% - 2px),
+    calc(100% - 15px) calc(50% - 2px);
+  background-size:
+    5px 5px,
+    5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.7rem;
+}
+
+.interest-section {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.interest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.field-hint {
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.interest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.interest-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem 0.9rem 2.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.01);
+  color: rgba(255, 255, 255, 0.82);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.interest-option:hover {
+  border-color: rgba(147, 51, 234, 0.32);
+  background: rgba(147, 51, 234, 0.04);
+  transform: translateY(-1px);
+}
+
+.interest-option input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.interest-option span {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.interest-option span::before {
+  content: "";
+  position: absolute;
+  left: -1.7rem;
+  top: 50%;
+  width: 1.1rem;
+  height: 1.1rem;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.interest-option input:checked + span::before {
+  background: linear-gradient(
+    135deg,
+    rgba(147, 51, 234, 0.9),
+    rgba(168, 85, 247, 0.75)
+  );
+  border-color: rgba(216, 180, 254, 0.9);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.18);
+}
+
+.interest-option input:checked + span::after {
+  content: "✓";
+  position: absolute;
+  left: -1.53rem;
+  top: 50%;
+  display: block;
+  color: #fff;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-weight: 700;
+  transform: translateY(-50%);
+}
+
+.interest-option input:focus-visible + span::before {
+  border-color: rgba(216, 180, 254, 0.9);
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.18);
+}
+
+.field-error {
+  color: #fca5a5;
+  min-height: 1.1rem;
+  font-size: 0.78rem;
+  margin-top: 0.45rem;
+}
+
+.payment-fieldset {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.form-metadata {
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-metadata p {
+  font-size: 0.88rem;
+  max-width: 48rem;
+}
+
+.submit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.submit-button {
+  border: 1px solid rgba(147, 51, 234, 0.5);
+  background: rgba(147, 51, 234, 0.08);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 0 28px rgba(147, 51, 234, 0.25);
+}
+
+.submit-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form-status {
+  min-height: 1.4rem;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.form-status[data-tone="error"] {
+  color: #fca5a5;
+}
+
+.form-status[data-tone="warning"] {
+  color: #fcd34d;
+}
+
+.join-closing {
+  padding-top: 4rem;
+}
+
+.closing-panel {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.closing-text {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(1.25rem, 3vw, 2.3rem);
+  font-weight: 700;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 767px) {
+  .join-page {
+    padding-top: 6.5rem;
+  }
+
+  .join-hero-grid,
+  .payment-card,
+  .field-grid,
+  .join-detail-grid,
+  .benefit-grid,
+  .interest-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .join-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .payment-row {
+    align-items: flex-start;
+  }
+
+  .submit-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .join-detail-card,
+  .benefit-card,
+  .copy-payment-btn,
+  .submit-button,
+  .interest-option,
+  .form-field input,
+  .form-field select {
+    transition: none;
+  }
+}
+
 /* ── Section Title Word-Reveal Animation ── */
 .section-title-word {
   display: inline-block;
